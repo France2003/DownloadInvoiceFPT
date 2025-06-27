@@ -244,7 +244,8 @@ def main():
     df_invoice = pd.read_excel(input_file, dtype=str)
     for index, row in df_invoice.iterrows():
         stt = index + 1
-        ma_so_thue = str(row.get("Mã số thuế", "") or "").strip()
+        ma_so_thue = row.get("Mã số thuế", "")
+        ma_so_thue = "" if pd.isna(ma_so_thue) else str(ma_so_thue).strip()
         ma_tra_cuu = str(row.get("Mã tra cứu", "") or "").strip()
         url = str(row.get("URL", "") or "").strip()
         if not url or not ma_tra_cuu:
